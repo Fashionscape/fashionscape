@@ -30,6 +30,16 @@ return new class extends Migration
             $table->string('file_name');
             $table->timestamps();
         });
+
+        Schema::create('galleries', function (Blueprint $table) {
+            $table->uuid('gallery_id');
+            $table->string('server_id');
+            $table->string('channel_id');
+            $table->string('tag');
+            $table->string('emoji_type');
+            $table->string('emoji');
+            $table->timestamps();
+    });
     }
 
     /**
@@ -38,6 +48,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('outfits');
+        Schema::dropIfExists('galleries');
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('discord_snowflake');
             $table->string('password');
